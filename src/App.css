@@ -29,3 +29,25 @@
   top: 20px;
   left: 100px;
 }
+
+.add-question {
+  position: relative;
+  top: 15px;
+  left: 10px;
+  font-size: 15px;
+}
+
+.add-question2 {
+  position: relative;
+  top: 160px;
+}
+
+.question-field {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  border: solid;
+  border-color: #696969;
+  width: 600px;
+  height: 155px;
+}

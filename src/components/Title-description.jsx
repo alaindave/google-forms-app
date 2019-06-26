@@ -1,27 +1,32 @@
 import React, { useState } from "react";
+
 const Title = () => {
   const [title, setTitle] = useState(" ");
   const [description, setDescription] = useState(" ");
 
-  const handleTitle = e => {
-    setTitle(e.target.value);
+  const handleChange = e => {
+    const { name, value } = e.target;
+    if (name === "title") {
+      setTitle(value);
+    } else {
+      setDescription(value);
+    }
   };
 
-  const handleDescription = e => {
-    setDescription(e.target.value);
-  };
   return (
     <div className="d-flex flex-row">
       <div className="form">
         <form className="d-flex flex-column">
           <input
-            onChange={handleTitle}
+            name="title"
+            onChange={handleChange}
             className="title"
             type="text"
             placeholder="Title"
           />
           <textarea
-            onChange={handleDescription}
+            name="description"
+            onChange={handleChange}
             className="textArea"
             placeholder="Enter description"
           />
