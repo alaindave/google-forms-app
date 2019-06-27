@@ -1,54 +1,26 @@
 import React, { useState } from "react";
 
 const Questions = props => {
-  //const [question, setQuestion] = useState(" ");
-  // const [title, setTitle] = useState(" ");
+  const [optionValue, setOptionValue] = useState(" ");
 
-  //const [description, setDescription] = useState(" ");
-  const [buttonStyle, setButtonStyle] = useState({
-    position: "relative",
-    top: 165,
-    fontSize: 15
-  });
-
-  //const handleChange = e => {
-  //  const { name, value } = e.target;
-  //if (name === "title") {
-  //  setQuestion(value);
-  // } else {
-  //  setDescription(value);
-  // }
-  //};
-
-  /** return (
-    <React.Fragment>
-      <form className="d-flex flex-column">
-        <input
-          onChange={handleChange}
-          className="title"
-          type="text"
-          placeholder="Questionnnsss"
-        />
-        <textarea
-          onChange={handleChange}
-          className="textArea"
-          placeholder="Enter description"
-        />
-      </form>
-
-      <p>im component two</p>
-      <p>component 2</p>
-    </React.Fragment>
-
-  **/
   const buttonClicked = () => {
-    // setButtonStyle({ display: "none" });
     props.handleClick();
+  };
+
+  const handleOptions = id => {
+    //send option to parent component
+    props.getOptions(optionValue, id);
+  };
+
+  const handleOptionsChange = (e, id) => {
+    setOptionValue(e.target.value);
+    props.sendOptionChange(e.target.value, id);
   };
 
   return props.questions.map((val, id) => {
     let titleId = `question-${id}`,
-      descriptionId = `description-${id}`;
+      descriptionId = `description-${id}`,
+      optionsId = `options-${id}`;
     return (
       <div className="d-flex flex-row">
         <div key={id} className="d-flex flex-column question-field">
@@ -73,10 +45,44 @@ const Questions = props => {
               value={props.questions[id].description}
               onChange={props.changeHandler}
             />
+
+            <input
+              type="text"
+              name="options"
+              data-id={id}
+              id={optionsId}
+              className="options-input"
+              placeholder="Add options"
+              value={props.questions[id].optionsChange}
+              onChange={e => handleOptionsChange(e, id)}
+            />
           </form>
 
-          <button style={buttonStyle} onClick={buttonClicked}>
-            Add question2
+          <div className="options-list">
+            {props.questions[id].options.map((option, index) => (
+              <li key={index}> {option}</li>
+            ))}
+          </div>
+
+          <button
+            onClick={buttonClicked}
+            className=" btn btn-info add-question2"
+          >
+            Add question
+          </button>
+
+          <button
+            onClick={() => props.onDelete(id)}
+            className=" btn btn-danger delete-question"
+          >
+            Delete
+          </button>
+
+          <button
+            onClick={() => handleOptions(id)}
+            className=" btn btn-success add-options"
+          >
+            Add options
           </button>
         </div>
 

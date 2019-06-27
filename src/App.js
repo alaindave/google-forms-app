@@ -4,23 +4,8 @@ import Title from "./components/Title-description";
 import Questions from "./components/Questions";
 
 const App = props => {
-  const [questionArray, setQuestionArray] = useState([
-    { title: " ", description: " " }
-  ]);
-  // const [buttonClicked, setButtonClicked] = useState(false);
+  const [questionArray, setQuestionArray] = useState([]);
   const [showButton, setShowButton] = useState(true);
-  // const [newQuestion, setNewQuestion] = useState(0);
-
-  // const handleClick = useCallback(() => {
-  // setButtonClicked(true);
-  // setShowButton(false);
-  // setNewQuestion(newQuestion + 1);
-  // console.log("no of questions", newQuestion);
-  //let new_array = questionArray.concat(Math.floor(Math.random() * 100 + 1));
-  //setQuestionArray([...questionArray, <Questions />]);
-  // console.log("question array", questionArray);
-  //console.log("total questions", questionArray.length);
-  //});
 
   const handleChange = e => {
     if (["title", "description"].includes(e.target.className)) {
@@ -29,31 +14,53 @@ const App = props => {
         e.target.className
       ] = e.target.value.toUpperCase();
       setQuestionArray(newQuestions);
-      console.log("questions array", questionArray);
     }
   };
 
   const addQuestion = () => {
-    setQuestionArray([...questionArray, { title: "", description: "" }]);
+    setQuestionArray([
+      ...questionArray,
+      { title: "", description: "", options: [], optionsChange: "" }
+    ]);
     setShowButton(false);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleDelete = id => {
+    const updatedArray = questionArray.filter(
+      question => questionArray.indexOf(question) !== id
+    );
+
+    setQuestionArray(updatedArray);
+  };
+
+  const saveOptions = (options, id) => {
+    let newQuestions = [...questionArray];
+    newQuestions[id]["options"].push(options);
+    setQuestionArray(newQuestions);
+  };
+
+  const saveOptionsChange = (option, id) => {
+    let newQuestions = [...questionArray];
+    newQuestions[id]["optionsChange"] = option;
+    setQuestionArray(newQuestions);
   };
 
   return (
     <div className="App">
       <Title />
       {showButton && (
-        <button className="add-question" onClick={addQuestion}>
-          Add question1
+        <button className=" btn btn-info add-question" onClick={addQuestion}>
+          Add question
         </button>
       )}
+
       <Questions
         questions={questionArray}
         handleClick={addQuestion}
         changeHandler={handleChange}
+        onDelete={handleDelete}
+        getOptions={saveOptions}
+        sendOptionChange={saveOptionsChange}
       />
     </div>
   );
