@@ -35,7 +35,7 @@
 .form-description {
   position: relative;
   top: 20px;
-  left: 100px;
+  left: 80px;
 }
 
 .add-question {
@@ -91,4 +91,22 @@
   position: absolute;
   left: 300px;
   top: 150px;
+}
+
+.buttonTrash {
+  position: relative;
+  left: 10px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.titleField {
+  position: relative;
+  left: 5px;
+}
+
+.descriptionField {
+  position: relative;
+  left: 5px;
 }

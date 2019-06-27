@@ -26,7 +26,7 @@ const App = props => {
   };
 
   const handleDelete = id => {
-    const updatedArray = questionArray.filter(
+    let updatedArray = questionArray.filter(
       question => questionArray.indexOf(question) !== id
     );
 
@@ -42,6 +42,15 @@ const App = props => {
   const saveOptionsChange = (option, id) => {
     let newQuestions = [...questionArray];
     newQuestions[id]["optionsChange"] = option;
+    setQuestionArray(newQuestions);
+  };
+
+  const optionDeleteHandler = (id, index) => {
+    let newQuestions = [...questionArray];
+    let newOptionArray = newQuestions[id]["options"].filter(
+      option => newQuestions[id]["options"].indexOf(option) !== index
+    );
+    newQuestions[id]["options"] = newOptionArray;
     setQuestionArray(newQuestions);
   };
 
@@ -61,6 +70,7 @@ const App = props => {
         onDelete={handleDelete}
         getOptions={saveOptions}
         sendOptionChange={saveOptionsChange}
+        sendOptionDelete={optionDeleteHandler}
       />
     </div>
   );

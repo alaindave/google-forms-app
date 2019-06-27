@@ -34,7 +34,7 @@ const Title = () => {
       </div>
 
       <div className="form-description">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <p>{description}</p>
       </div>
     </div>

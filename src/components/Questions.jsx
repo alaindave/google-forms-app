@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Questions = props => {
   const [optionValue, setOptionValue] = useState(" ");
@@ -17,6 +19,10 @@ const Questions = props => {
     props.sendOptionChange(e.target.value, id);
   };
 
+  const handleOptionDelete = (id, index) => {
+    //send index of deleted option to parent and id of question
+    props.sendOptionDelete(id, index);
+  };
   return props.questions.map((val, id) => {
     let titleId = `question-${id}`,
       descriptionId = `description-${id}`,
@@ -60,7 +66,15 @@ const Questions = props => {
 
           <div className="options-list">
             {props.questions[id].options.map((option, index) => (
-              <li key={index}> {option}</li>
+              <li key={index}>
+                {option}
+                <button
+                  className="buttonTrash"
+                  onClick={() => handleOptionDelete(id, index)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              </li>
             ))}
           </div>
 
@@ -87,8 +101,13 @@ const Questions = props => {
         </div>
 
         <div className="form-description">
-          <h1>{props.questions[id].title}</h1>
-          <p>{props.questions[id].description}</p>
+          <h3 className="titleField">{props.questions[id].title}</h3>
+          <p className="descriptionField">{props.questions[id].description}</p>
+          <ul>
+            {props.questions[id].options.map((option, index) => (
+              <li key={index}>{option}</li>
+            ))}
+          </ul>
         </div>
       </div>
     );
