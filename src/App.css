@@ -24,6 +24,14 @@
   width: 550px;
 }
 
+.description {
+  position: absolute;
+  top: 55px;
+  left: 25px;
+  height: 80px;
+  width: 550px;
+}
+
 .form-description {
   position: relative;
   top: 20px;
@@ -32,14 +40,15 @@
 
 .add-question {
   position: relative;
-  top: 15px;
+  top: 18px;
   left: 10px;
   font-size: 15px;
 }
 
 .add-question2 {
   position: relative;
-  top: 160px;
+  top: 165px;
+  font-size: 15px;
 }
 
 .question-field {
