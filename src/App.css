@@ -5,7 +5,9 @@
   width: 600px;
   height: 155px;
   border-style: outset;
-  border-color: #696969;
+  border-width: 1px 0.5px 2px 1px;
+  border-radius: 8px;
+  border-color: #e7dede;
 }
 
 .title {
@@ -14,6 +16,9 @@
   left: 25px;
   height: 30px;
   width: 550px;
+  border-radius: 14px;
+  border-width: 1px 0.5px 2px 1px;
+  border-color: #e7dede;
 }
 
 .textArea {
@@ -22,6 +27,9 @@
   left: 25px;
   height: 80px;
   width: 550px;
+  border-radius: 10px;
+  border-width: 1px 0.5px 2px 1px;
+  border-color: #e7dede;
 }
 
 .description {
@@ -30,6 +38,10 @@
   left: 25px;
   height: 80px;
   width: 550px;
+  border-style: outset;
+  border-width: 1px 0.5px 2px 1px;
+  border-radius: 8px;
+  border-color: #e7dede;
 }
 
 .form-description {
@@ -51,12 +63,14 @@
 
 .question-field {
   position: relative;
-  top: 10px;
   left: 10px;
-  border: solid;
-  border-color: #696969;
   width: 600px;
   height: 300px;
+  border-style: outset;
+  border-width: 1px 0.5px 2px 1px;
+  border-radius: 8px;
+  border-color: #e7dede;
+  margin-top: 35px;
 }
 
 .delete-question {
@@ -85,6 +99,10 @@
   position: relative;
   top: 150px;
   left: 22px;
+  border-style: outset;
+  border-width: 1px 0.5px 2px 1px;
+  border-radius: 8px;
+  border-color: #e7dede;
 }
 
 .options-list {
