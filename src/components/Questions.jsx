@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,21 +9,24 @@ const Questions = props => {
     props.handleClick();
   };
 
-  const handleOptions = id => {
+  const addOptions = id => {
+    //clear options input field
+    setOptionValue(" ");
+
     //send option to parent component
     props.getOptions(optionValue, id);
   };
 
-  const handleOptionsChange = (e, id) => {
+  const handleOptionsChange = e => {
     setOptionValue(e.target.value);
-    props.sendOptionChange(e.target.value, id);
   };
 
   const handleOptionDelete = (id, index) => {
-    //send index of deleted option to parent and id of question
+    //send index of deleted option and question id to parent
     props.sendOptionDelete(id, index);
   };
-  return props.questions.map((val, id) => {
+
+  return props.questions.map((value, id) => {
     let titleId = `question-${id}`,
       descriptionId = `description-${id}`,
       optionsId = `options-${id}`;
@@ -59,7 +62,7 @@ const Questions = props => {
               id={optionsId}
               className="options-input"
               placeholder="Add options"
-              value={props.questions[id].optionsChange}
+              value={optionValue}
               onChange={e => handleOptionsChange(e, id)}
             />
           </form>
@@ -93,7 +96,7 @@ const Questions = props => {
           </button>
 
           <button
-            onClick={() => handleOptions(id)}
+            onClick={() => addOptions(id)}
             className=" btn btn-success add-options"
           >
             Add options

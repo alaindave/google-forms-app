@@ -20,7 +20,7 @@ const App = props => {
   const addQuestion = () => {
     setQuestionArray([
       ...questionArray,
-      { title: "", description: "", options: [], optionsChange: "" }
+      { title: "", description: "", options: [] }
     ]);
     setShowButton(false);
   };
@@ -36,12 +36,6 @@ const App = props => {
   const saveOptions = (options, id) => {
     let newQuestions = [...questionArray];
     newQuestions[id]["options"].push(options);
-    setQuestionArray(newQuestions);
-  };
-
-  const saveOptionsChange = (option, id) => {
-    let newQuestions = [...questionArray];
-    newQuestions[id]["optionsChange"] = option;
     setQuestionArray(newQuestions);
   };
 
@@ -69,7 +63,6 @@ const App = props => {
         changeHandler={handleChange}
         onDelete={handleDelete}
         getOptions={saveOptions}
-        sendOptionChange={saveOptionsChange}
         sendOptionDelete={optionDeleteHandler}
       />
     </div>
