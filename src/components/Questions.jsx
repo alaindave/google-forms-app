@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
 
 const Questions = props => {
   const [optionValue, setOptionValue] = useState(" ");
@@ -64,40 +65,42 @@ const Questions = props => {
           </form>
 
           <div className="options-list">
-            {props.questions[id].options.map((option, index) => (
-              <li key={index}>
-                {option}
-                <button
-                  className="buttonTrash"
-                  onClick={() => handleOptionDelete(id, index)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </li>
-            ))}
+            <ul>
+              {props.questions[id].options.map((option, index) => (
+                <li key={index}>
+                  {option}
+                  <button
+                    className="buttonTrash"
+                    onClick={() => handleOptionDelete(id, index)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <button
             onClick={() => props.onDelete(id)}
-            className=" btn btn-danger delete-question"
+            className="  delete-question"
           >
-            Delete
+            Delete Question
           </button>
 
-          <button
-            onClick={() => addOptions(id)}
-            className=" btn btn-success add-options"
-          >
-            Add options
+          <button onClick={() => addOptions(id)} className="  add-options">
+            Add option
           </button>
         </div>
 
-        <div className="form-description">
-          <h3 className="titleField">{props.questions[id].title}</h3>
+        <div className="quizz-content">
+          <h6 className="titleField">{props.questions[id].title}</h6>
           <p className="descriptionField">{props.questions[id].description}</p>
           <ul>
             {props.questions[id].options.map((option, index) => (
-              <li key={index}>{option}</li>
+              <li key={index}>
+                <FontAwesomeIcon icon={faSquare} />
+                {option}
+              </li>
             ))}
           </ul>
         </div>

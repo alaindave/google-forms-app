@@ -60,7 +60,7 @@ const App = props => {
         sendOptionDelete={optionDeleteHandler}
       />
 
-      <button className=" btn btn-info add-question" onClick={addQuestion}>
+      <button className=" add-question" onClick={addQuestion}>
         Add question
       </button>
     </div>
