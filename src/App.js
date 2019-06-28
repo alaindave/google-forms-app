@@ -51,20 +51,18 @@ const App = props => {
   return (
     <div className="App">
       <Title />
-      {showButton && (
-        <button className=" btn btn-info add-question" onClick={addQuestion}>
-          Add question
-        </button>
-      )}
 
       <Questions
         questions={questionArray}
-        handleClick={addQuestion}
         changeHandler={handleChange}
         onDelete={handleDelete}
         getOptions={saveOptions}
         sendOptionDelete={optionDeleteHandler}
       />
+
+      <button className=" btn btn-info add-question" onClick={addQuestion}>
+        Add question
+      </button>
     </div>
   );
 };

@@ -5,10 +5,6 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 const Questions = props => {
   const [optionValue, setOptionValue] = useState(" ");
 
-  const buttonClicked = () => {
-    props.handleClick();
-  };
-
   const addOptions = id => {
     //clear options input field
     setOptionValue(" ");
@@ -80,13 +76,6 @@ const Questions = props => {
               </li>
             ))}
           </div>
-
-          <button
-            onClick={buttonClicked}
-            className=" btn btn-info add-question2"
-          >
-            Add question
-          </button>
 
           <button
             onClick={() => props.onDelete(id)}
